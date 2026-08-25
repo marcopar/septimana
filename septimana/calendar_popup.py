@@ -42,6 +42,9 @@ TOOLBAR_BUTTON_FONT = ("Segoe UI Symbol", 12, "bold")
 
 CELL_W = 3
 PANEL_PAD = 8
+# A month spans 4-6 calendar rows; fixing this keeps every panel (and the
+# popup's overall height) constant so the sidebar buttons never shift.
+MAX_WEEK_ROWS = 6
 
 
 class _Rect(ctypes.Structure):
@@ -246,12 +249,22 @@ class CalendarPopup(tk.Toplevel):
                      bg=self._c["bg"], fg=self._c["header_fg"]
                      ).grid(row=1, column=col, sticky="nsew")
 
-        for row, (week, days) in enumerate(month_grid(year, month), start=2):
+        weeks = month_grid(year, month)
+        for row, (week, days) in enumerate(weeks, start=2):
             tk.Label(panel, text=f"{week:02d}", font=HEADER_FONT, width=CELL_W,
                      bg=self._c["weekno_bg"], fg=self._c["weekno_fg"]
                      ).grid(row=row, column=0, sticky="nsew")
             for col, day in enumerate(days, start=1):
                 self._day_label(panel, day, month).grid(row=row, column=col, sticky="nsew")
+
+        # Pad short months (4-5 rows) up to MAX_WEEK_ROWS so every panel is the
+        # same height and the sidebar buttons stay put across month changes.
+        for row in range(len(weeks) + 2, MAX_WEEK_ROWS + 2):
+            tk.Label(panel, text="", font=HEADER_FONT, width=CELL_W,
+                     bg=self._c["bg"]).grid(row=row, column=0, sticky="nsew")
+            for col in range(1, 8):
+                tk.Label(panel, text="", font=CELL_FONT, width=CELL_W,
+                         bg=self._c["bg"]).grid(row=row, column=col, sticky="nsew")
         return panel
 
     def _day_label(self, parent: tk.Misc, day: date, month: int) -> tk.Label:
