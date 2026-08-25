@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "septimana"
+version = "1.0.0"
+description = "Windows tray icon showing the current ISO week number, with a three-month calendar popup."
+requires-python = ">=3.9"
+dependencies = [
+    "pystray>=0.19",
+    "Pillow>=10",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7", "pyinstaller>=6"]
+
+[project.gui-scripts]
+septimana = "septimana.app:main"
+
+[tool.setuptools.packages.find]
+include = ["septimana*"]
