@@ -1,6 +1,8 @@
 # Septimana
 
-A Windows 11 system-tray application that displays the current week number.
+This project is 100% vibe coded
+
+A Windows system-tray application that displays the current week number.
 
 Clicking the tray icon opens a popup with the previous, current and next month.
 Each month panel shows the month name and year on the first row, short weekday
