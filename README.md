@@ -1,12 +1,12 @@
 # Septimana
+
 WARNING: This project is 100% vibe coded
+
+A Windows system-tray application that displays the week numbers.
 
 <img width="195" height="48" alt="image" src="https://github.com/user-attachments/assets/b7bdba66-8937-411a-a1ad-49ba6dc28653" />
 
 <img width="732" height="181" alt="image" src="https://github.com/user-attachments/assets/5f3fd551-a7d8-467a-b4e5-9368305e395f" />
-
-
-A Windows system-tray application that displays the week numbers.
 
 Clicking the tray icon opens a popup with the previous, current and next month.
 Each month panel shows the month name and year on the first row, short weekday
