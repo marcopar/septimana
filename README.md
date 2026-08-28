@@ -1,6 +1,6 @@
 # Septimana
 
-WARNING: This project is 100% vibe coded
+WARNING: This project is 100% vibe coded (AKA i have no idea what's going on)
 
 A Windows system-tray application that displays the week numbers.
 
