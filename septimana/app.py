@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import threading
 import tkinter as tk
+from tkinter import messagebox
 from datetime import date, datetime, timedelta
 
 import pystray
@@ -15,6 +16,7 @@ import pystray
 from .calendar_popup import CalendarPopup
 from .icon import render_icon, watch_theme
 from .weeks import iso_week
+from . import __version__
 
 # Ignore an icon click that arrives right after a focus-out closed the popup,
 # otherwise the same click would immediately reopen it.
@@ -40,6 +42,7 @@ class App:
             title=self._tooltip(today),
             menu=pystray.Menu(
                 pystray.MenuItem("Open", self._on_activate, default=True, visible=False),
+                pystray.MenuItem("About Septimana", self._on_about),
                 pystray.MenuItem("Exit", self._on_exit),
             ),
         )
@@ -52,6 +55,9 @@ class App:
     def _on_exit(self, _icon=None, _item=None) -> None:
         self.root.after(0, self.shutdown)
 
+    def _on_about(self, _icon=None, _item=None) -> None:
+        self.root.after(0, self.show_about)
+
     # -- Tk thread ---------------------------------------------------------
 
     def toggle_popup(self) -> None:
@@ -62,6 +68,9 @@ class App:
             return
         self._popup = CalendarPopup(self.root, on_close=self._on_popup_closed)
         self._popup.present()
+
+    def show_about(self) -> None:
+        messagebox.showinfo("About Septimana", f"Septimana\nVersion {__version__}", parent=self.root)
 
     def _on_popup_closed(self) -> None:
         self._popup = None

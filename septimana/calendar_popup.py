@@ -8,6 +8,7 @@ import tkinter as tk
 from datetime import date
 from pathlib import Path
 
+from . import __version__
 from .icon import apps_are_light
 from .weeks import WEEKDAY_ABBR, month_grid, month_offset, month_title
 
@@ -171,7 +172,7 @@ class CalendarPopup(tk.Toplevel):
         self.overrideredirect(not enabled)
         self.attributes("-topmost", True)
         self.resizable(False, False)
-        self.title("Septimana" if enabled else "")
+        self.title(f"Septimana {__version__}" if enabled else "")
         self.deiconify()
         self.update_idletasks()
 

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "septimana"
-version = "1.0.0"
+dynamic = ["version"]
 description = "Windows tray icon showing the current ISO week number, with a three-month calendar popup."
 requires-python = ">=3.9"
 dependencies = [
@@ -20,3 +20,6 @@ septimana = "septimana.app:main"
 
 [tool.setuptools.packages.find]
 include = ["septimana*"]
+
+[tool.setuptools.dynamic]
+version = {attr = "septimana.__version__"}

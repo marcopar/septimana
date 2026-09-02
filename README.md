@@ -60,6 +60,23 @@ The tray icon is separate and drawn at runtime from the current week number.
 The result is a self-contained `dist\` folder containing `septimana.exe` plus the
 two startup scripts. Zip that folder to distribute it; it needs no Python install.
 
+## Releases
+
+The current release version is kept in `septimana\__init__.py` as `__version__`
+and must use the `x.y` format. To prepare a release, update that value, then run:
+
+```powershell
+.\release.ps1
+git add .
+git commit -m "Release vX.Y"
+git tag vX.Y
+git push origin main vX.Y
+```
+
+Pushing a `vX.Y` tag starts the GitHub Actions release workflow. It verifies that
+the tag matches `__version__`, runs tests, builds the application, and attaches
+`septimana-X.Y-windows.zip` to a GitHub release.
+
 ## Start with Windows
 
 From the folder holding `septimana.exe`, double-click `install-startup.cmd`
