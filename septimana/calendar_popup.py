@@ -212,7 +212,7 @@ class CalendarPopup(tk.Toplevel):
             child.destroy()
 
         months = tk.Frame(self._body, bg=self._c["bg"])
-        months.grid(row=0, column=0, padx=(PANEL_PAD, 0), pady=(PANEL_PAD, 0), sticky="n")
+        months.grid(row=0, column=0, padx=(PANEL_PAD, 0), pady=PANEL_PAD, sticky="n")
 
         for offset in (-1, 0, 1):
             year, month = month_offset(self._year, self._month, offset)
